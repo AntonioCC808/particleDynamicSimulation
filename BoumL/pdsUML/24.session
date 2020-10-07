@@ -1,0 +1,23 @@
+window_sizes 1366 705 320 1041 555 104
+
+diagrams
+  classdiagram_ref 128002 // Interfaces
+    764 389 100 A4-Landscape 0 0
+  classdiagram_ref 128130 // DomainClasses
+    764 389 64 A3-Landscape 0 0
+  classdiagram_ref 306306 // outputClassDiagram
+    114 86 100 A3 0 0
+  classdiagram_ref 249346 // forceClassDiagram
+    114 86 100 A4-Landscape 0 0
+  active  classdiagram_ref 193794 // pdsClassDiagram
+    1041 555 100 A4 79 0
+end
+show_stereotypes
+selected class_ref 224642 // IOutput
+open
+  classview_ref 128002 // Common
+  classview_ref 186754 // ClassView
+  class_ref 303234 // Force
+  classview_ref 208386 // ClassView
+end
+end

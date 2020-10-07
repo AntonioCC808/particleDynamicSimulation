@@ -1,0 +1,9 @@
+class OutputTextFiles
+!!!481666.java!!!	OutputTextFiles()
+ 
+!!!439810.java!!!	velocityTextFile(in velocityData : double[][]) : void
+ 
+!!!439938.java!!!	pairDistributionTextFile(in pairDistributionData : double[][]) : void
+ 
+!!!440066.java!!!	energyTextFile(in energyData : double [][]) : void
+ 

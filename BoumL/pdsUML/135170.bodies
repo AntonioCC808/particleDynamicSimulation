@@ -1,0 +1,14 @@
+class R2Point
+!!!447746.java!!!	R2Point()
+super();
+!!!430082.java!!!	R2Point(in x : double, in y : double)
+this.x = x;
+this.y = y;
+!!!317058.java!!!	clone() : Object
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(Exception ex){ //Use CloneNotSupportedException if possible
+            System.out.println(" It was not possible to clone...");
+        }
+        return obj;

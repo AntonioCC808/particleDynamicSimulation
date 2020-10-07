@@ -1,0 +1,11 @@
+window_sizes 1914 947 433 1481 717 208
+show_stereotypes
+selected 
+package_ref 129 // pdsUML
+open
+  class_ref 387074 // OutputTextFiles
+  class_ref 387202 // OutputMovies
+  deploymentview_ref 154242 // outputModule
+  classview_ref 261762 // unknown
+end
+end

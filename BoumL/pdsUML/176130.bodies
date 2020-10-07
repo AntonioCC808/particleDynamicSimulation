@@ -1,0 +1,13 @@
+class ResultsFiles
+!!!432898.java!!!	ResultsFiles(in prefix : String, in suffix : String)
+/*
+ * The names of the files are composed of the prefix, a name specifying what it is (that is included here).
+ */
+		positionsData = prefix + "positionsData_" + suffix;
+		velocitiesData = prefix + "velocitiesData_" + suffix;
+		velocitiesHistogramData = prefix + "velocitiesHistogramData_" + suffix;
+		neighbourData = prefix + "neighbourData_" + suffix;
+		potentialAndForce = prefix + "potentialAndForceData_" + suffix;
+		energyData = prefix + "energyData_" + suffix;
+		pairData = prefix + "pairData_" + suffix;
+		positionMovieData = prefix + "positionMovieData_" + suffix;

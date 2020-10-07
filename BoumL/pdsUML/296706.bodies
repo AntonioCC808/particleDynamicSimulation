@@ -1,0 +1,93 @@
+class Velocity
+!!!302850.java!!!	createVelocity(in s : State, in f : IForce) : IVelocity
+
+		  return new Velocity(s, f);
+!!!302978.java!!!	Velocity(in s : State, in f : IForce)
+	this.s = s;
+	this.f = f;
+!!!303234.java!!!	calcVelocity() : double
+double kineticEnergy = 0;
+
+		// The first part of the algorithm is a Taylor series which advances positions
+		// form t to dt+t
+		// and velocities from t to dt/2+t. After this the force routine is called
+		for (int iatom = 0; iatom < s.particles.size(); iatom++) {
+			// Update the positions
+			// First we allocate the new positions in a local variable so that we can work
+			// with the previous
+			// positions to calculate the displacement for each particle
+
+			// X coordinate
+			double newX = 0;
+			newX = s.particles.get(iatom).r.x + s.e.timeStep * s.particles.get(iatom).v.x
+					+ 0.5 * Math.pow(s.e.timeStep, 2) * s.particles.get(iatom).a.x;
+
+			// Y coordinate
+			double newY = 0;
+			newY = s.particles.get(iatom).r.y + s.e.timeStep * s.particles.get(iatom).v.y
+					+ 0.5 * Math.pow(s.e.timeStep, 2) * s.particles.get(iatom).a.y;
+
+			// Z coordinate
+			double newZ = 0;
+			newZ = s.particles.get(iatom).r.z + s.e.timeStep * s.particles.get(iatom).v.z
+					+ 0.5 * Math.pow(s.e.timeStep, 2) * s.particles.get(iatom).a.z;
+
+			// Creation of an object R3Point to calculate the distance between the previous
+			// and the current
+			// position of the atom iatom
+			R3Point newPositions = new R3Point(newX, newY, newZ);
+			// Calculation of the displacement d
+			s.particles.get(iatom).d = s.particles.get(iatom).d + s.particles.get(iatom).r.distanceTo(newPositions);
+
+			// Now, we can allocate the new positions in the positions of the atom iatom
+			// because the previous positions will not use any more.
+			s.particles.get(iatom).r.x = newX;
+			s.particles.get(iatom).r.y = newY;
+			s.particles.get(iatom).r.z = newZ;
+
+			// Compute the velocities at half step
+			// Vx component
+			s.particles.get(iatom).v.x = s.particles.get(iatom).v.x + s.e.timeStep / 2.0 * s.particles.get(iatom).a.x;
+			// Vy component
+			s.particles.get(iatom).v.y = s.particles.get(iatom).v.y + s.e.timeStep / 2.0 * s.particles.get(iatom).a.y;
+			// Vz component
+			s.particles.get(iatom).v.z = s.particles.get(iatom).v.z + s.e.timeStep / 2.0 * s.particles.get(iatom).a.z;
+		}
+
+		// Compute the forces for the atomic positions at (t + \delta t)
+		s.energy.u = f.calcForce();
+
+		// The second part of the algorithm advances velocities from t+dt/2 to t+dt
+		for (int iatom = 0; iatom < s.particles.size(); iatom++) {
+			// Compute the velocities at half step
+
+			// Vx component
+			s.particles.get(iatom).v.x = s.particles.get(iatom).v.x + s.e.timeStep / 2.0 * s.particles.get(iatom).a.x;
+
+			// Vy component
+			s.particles.get(iatom).v.y = s.particles.get(iatom).v.y + s.e.timeStep / 2.0 * s.particles.get(iatom).a.y;
+
+			// Vz component
+			s.particles.get(iatom).v.z = s.particles.get(iatom).v.z + s.e.timeStep / 2.0 * s.particles.get(iatom).a.z;
+			kineticEnergy = kineticEnergy + s.particles.get(iatom).v.kinetic();
+		}
+		s.energy.k = kineticEnergy;
+		// TotalEnergy
+		s.energy.total = s.energy.k + s.energy.u;
+		s.nStep++;
+
+		// Now it will be calculated the largest of the displacements of the particles
+		// since the last time the vicinity was calculated to check later if it is
+		// necessary to recalculate
+		// the list of neighbors.
+
+		/////////////////////// DUDA////////////////////
+		// Maximum displacement of all the atoms
+		double maxDisplacement = 0;
+		// Find the maximum displacement between all the atoms in the supercell
+		for (int iatom = 0; iatom < s.particles.size(); iatom++) {
+			if (maxDisplacement < s.particles.get(iatom).d) {
+				maxDisplacement = s.particles.get(iatom).d;
+			}
+		}
+		return maxDisplacement;

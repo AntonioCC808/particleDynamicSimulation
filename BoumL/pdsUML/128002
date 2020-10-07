@@ -1,0 +1,1971 @@
+format 222
+"GlobalView" // GlobalView
+  revision 59
+  modified_by 26 "ANTONIO CUADCOB"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pds/common/"
+  java_package "pds.common"
+  classview 128002 "Common"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 141058 // common
+    class 197506 "INeighbours"
+      visibility public stereotype "interface"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 183938 "calcVecinity"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "maxDisplacement" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This methode verifies the need to recalculate the vecinity of the particles
+and do it if necessary. 
+It accumulates the maxDisplacements input argument and re-calculates the 
+vecinities if the accumulated displacement exceeds the maximum tolerable.
+If the vecinities need to be recalculated it calculates all the vecinities lists 
+and reset the accumulated displacement to 0.0.
+
+@param maxDisplacement the value of the largest displacement suffered in the 
+ongoing step by any of the particles in the system.
+@return true if the vecinities have been recalculated false otherwise"
+      end
+    end
+
+    class 196994 "IInit"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      class 316290 "TypeOfCellLattice"
+	visibility public stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}
+};
+"
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+	python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+	idl_decl "${comment}enum ${name} {
+${items}};
+"
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	comment "Kinds of images that can be requested to the results formating module
+ "
+	attribute 239874 "FCC"
+	  public type class_ref 316290 // TypeOfCellLattice
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment "This indicates that the particles in the cell lattice follow a Face Centered Cubic pattern.
+ "
+	end
+
+	attribute 240002 "BCC"
+	  public type class_ref 316290 // TypeOfCellLattice
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " This indicates that the particles in the cell lattice follow a Body Centered Cubic pattern"
+	end
+      end
+
+      operation 183554 "doInit"
+	public return_type class_ref 128258 // State
+	nparams 1
+	  param in name "experiment" type class_ref 136194 // InputData
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Create the initial state for the given experiment and returns it with the 
+initial positions, velocities and neighbours lists for all particles.
+
+@param experiment is the experiment object with the data needed to configure and 
+run the simulation
+@return a fresh new State ready to start the simulation"
+      end
+
+      operation 183682 "velocityDistribution"
+	public return_type class_ref 135298 // Graph
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calculates a Graph showing the statistical distribution of velocities for 
+all the particles of the system at the given state.
+
+@param s areference to the State object for which the distribution will be calculated
+@return a reference to the Graph object that holds the velocities distribution function "
+      end
+
+      operation 183810 "getInitialVelocityDistribution"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a Graph showing the statistical distribution of velocities for 
+all the particles of the system as they were assigned at the initial state.
+
+@return a reference to the Graph object that holds the velocities distribution function "
+      end
+    end
+
+    class 128514 "IVelocity"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This method is included in the class interface IVelocity and it gets state 
+and changes it, It updates the values for the positions and the kinetical energy.
+It returns the maximum displacement."
+      operation 128130 "calcVelocity"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128002 "IForce"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This method takes from the class Force maxd and mind from the current state.
+It will divide the interval between mind and maxd in some divisions which are collected in X. It will calculate the number of particles in each division
+and collect these values on the Y axis."
+      class 316418 "TypeOfPotential"
+	visibility public stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}
+};
+"
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+	python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+	idl_decl "${comment}enum ${name} {
+${items}};
+"
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	comment "Kinds of images that can be requested to the results formating module
+ "
+	attribute 240386 "LENNARDJONESUNSHIFTED"
+	  public type class_ref 316418 // TypeOfPotential
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment "This indicates that the forces that affect particles are to be calculated using the unshifted Lennard-Jones kind of potential.
+ "
+	end
+
+	attribute 240514 "LENNARDJONESSHIFTED"
+	  public type class_ref 316418 // TypeOfPotential
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment "This indicates that the forces that affect particles are to be calculated using the shifted Lennard-Jones potential to avoid discontinuity in the potential energy."
+	end
+
+	attribute 240642 "LENNARDJONESTOTALSHIFTED"
+	  public type class_ref 316418 // TypeOfPotential
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment "This indicates that the forces that affect particles are to be calculated using the total shifted Lennard-Jones potential to avoid discontinuity in the potential energy
+and the force"
+	end
+      end
+
+      operation 128002 "calcForce"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calculates the forces that apply to all particles and update the 
+corresponding accelerations in the current State. The operation 
+returns the current potential energy of the system. 
+The positions of every particle are taken from State, as well as the 
+neighbour list of each particle. For a particle, just the particles 
+stated in the neighbour list are taken into account.
+The force acting over a particle because of the other ones has three components. 
+First, it calculates the distance between each neighbour particle and 
+the force is calculated using the equation for every particle against this one,
+therefore the total force in a component is the sum of all these pair forces.
+The force acting on a particle operates in the same way for the 3 components.
+
+@return a double real value with the current potential energy of the system."
+      end
+
+      operation 134658 "evalPotential"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "distance" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This function returrns the potential between two particles of the 
+current experiment evaluated for a concrete distance given as input
+parameter.
+
+@param distance value in meters that indicates the distance between 
+the particles for which the potential is to be calculated
+@return value of the potential calculated for two particles of the current 
+experiment when they are at the distance given as invocation argument.  "
+      end
+
+      operation 134786 "drawPotential"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This method returns a graph in the form of a list of points (x,y) that 
+describe the potential for the range of distance vales observed in the 
+current experiment.
+The number of points is taken from the histogram size constant that comes from Input.
+The objective of this method is to provide (review) graph which contains two list of numbers
+In the x coordinate we take as a first value, the minimum distance mind and as a maximum
+value the maximum distance maxd. The intermediate points are values separate (maxd-mind)/numberOfPoints
+In the Y coordinate, the potential for each value of the distances is calculated using the method evalPotential
+
+@return a graph that is a list of pairs of numbers (x,y). These values 
+are of the type double. x represents the distance in meters and y potentials
+in energy units. The first and last points in the graph correspond to the minimum and 
+maximum distances observed among all particles in the current experiment."
+      end
+
+      operation 128386 "drawPairDistributionFunction"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This method takes from the class Force maxd and mind from the current state.
+It will divide the interval between mind and maxd in some divisions which 
+are collected in X. It will calculate the number of particles in each division
+and collect these values on the Y axis."
+      end
+
+      operation 128154 "drawForce"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 224642 "IOutput"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "The interface for the output class, with the methods to represent each of the results.
+"
+      operation 281090 "results"
+	public return_type class_ref 176130 // ResultsFiles
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}();
+"
+	
+	
+	
+	comment "Returns the results of a simulation done for the given experiment. The 
+operation produces the output results files and returns the names of those files. 
+
+@param experiment is the experiment object with the data needed to retrive
+the simulation results
+@return returns the ResultsFile object with the names of all the requested 
+resulting images and data files generated. If any of those files could not 
+be generated the corresponding string would be a null reference."
+      end
+    end
+
+    class 136194 "InputData"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Container of all the information needed to perform the simulation. It reads the data 
+from the text file passed as parameter."
+      attribute 134658 "nSteps"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Number of steps of the simulation"
+      end
+
+      attribute 134786 "timeStep"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Time step used for the simulation."
+      end
+
+      attribute 134914 "nickname"
+	public explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Simulation identifier."
+      end
+
+      attribute 135042 "sigma"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Parameter with length dimension of the biparametric potential. Sigma for the Lennard-Jones potential, which is the distance for which the potentialbetween particles is zero ."
+      end
+
+      attribute 135170 "epsilon"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Energy dimension parameter of the biparametric potential. Epsilon for the
+Lennard-Jones potential, which is the depth of the potential."
+      end
+
+      attribute 135298 "reduceDensity"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Reduced density of the bulk of atoms."
+      end
+
+      attribute 135426 "mass"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Mass of the simulated atoms."
+      end
+
+      attribute 135554 "atomicNumber"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Atomic number of the simulated atom."
+      end
+
+      attribute 135682 "temperature"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Initial temperature."
+      end
+
+      attribute 247426 "numberCells"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Number of cells in each direction (x,y,z) of the supercell."
+      end
+
+      attribute 135938 "cutoffRadius"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Cutoff radius considered for the Lennard-Jones potential (in sigma units)."
+      end
+
+      attribute 136066 "cutoffList"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Cutoff distance to compute the Verlet neighbour list
+"
+      end
+
+      classrelation 373250 // potential (<unidirectional association>)
+	relation 370562 --->
+	  a role_name "potential" public
+	    comment "
+Type of potential used in the simulation.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 373250 // potential (<unidirectional association>)
+	  b parent class_ref 316418 // TypeOfPotential
+      end
+
+      classrelation 373378 // initialLattice (<unidirectional association>)
+	relation 370690 --->
+	  a role_name "initialLattice" public
+	    comment "
+Type of the initial lattice.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 373378 // initialLattice (<unidirectional association>)
+	  b parent class_ref 316290 // TypeOfCellLattice
+      end
+
+      attribute 128327 "outputFolder"
+	const_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Full path of the folder where all files will be generated."
+      end
+
+      attribute 128455 "histogramResolution"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Number of segments in the X axis used for the various histograms 
+plotted as results of the simulation. This number is also used as the 
+number of values of distance used to generate the image of the potential. "
+      end
+
+      classrelation 224130 // energyLog (<directional aggregation>)
+	relation 222338 o-->
+	  stereotype "list"
+	  a role_name "energyLog" public
+	    comment "List of data collected from each step of the simulation. It has the
+values of the kinetic and potential energies at each step of the simulation."
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 224130 // energyLog (<directional aggregation>)
+	  b parent class_ref 264450 // EnergyLog
+      end
+
+      classrelation 236162 // movie (<directional aggregation>)
+	relation 233730 o-->
+	  stereotype "list"
+	  a role_name "movie" public
+	    comment "List of states that will be used for creating the animation. Only 
+a fraction of the steps is stored in this list, and only a fraction of the lattice is 
+stored in the set of particles"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 236162 // movie (<directional aggregation>)
+	  b parent class_ref 128258 // State
+      end
+
+      classrelation 373762 // InitialVelocityDistribution (<unidirectional association>)
+	relation 371074 --->
+	  a role_name "InitialVelocityDistribution" public
+	    comment "
+This reference serve to provide the InitialVelocityDistribution graph to the output module.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 373762 // InitialVelocityDistribution (<unidirectional association>)
+	  b parent class_ref 135298 // Graph
+      end
+
+      operation 134914 "InputData"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "simulationData" explicit_type "string"
+	nexceptions 1
+	  exception class_ref 407042 // ExperimentNotCreated
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Constructor of the object. Reads the file whose full path is given as input 
+argument, initializes the attributes and writes the log file.
+
+@param simulationData a string with the full path of the file that gives values to all the
+attributes of the object.
+@throws ExperimentNotCreated "
+      end
+
+      class 407042 "ExperimentNotCreated"
+	visibility public 
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	java_annotation "@SuppressWarnings(\"serial\")
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	classrelation 373890 // <generalisation>
+	  relation 371202 ---|>
+	    a public
+	      java "${type}"
+	      classrelation_ref 373890 // <generalisation>
+	    b parent class_ref 257282 // Exception
+	end
+      end
+
+      simplerelation 173826
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+
+      simplerelation 270978
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 256514 // java.io
+      end
+
+      classrelation 374402 // potentialGraph (<unidirectional association>)
+	relation 371714 --->
+	  a role_name "potentialGraph" public
+	    comment "
+This reference serve to provide the potential graph to the output module.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 374402 // potentialGraph (<unidirectional association>)
+	  b parent class_ref 135298 // Graph
+      end
+
+      classrelation 374530 // PairDistributionFunctionGraph (<unidirectional association>)
+	relation 371842 --->
+	  a role_name "PairDistributionFunctionGraph" public
+	    comment "
+This reference serve to provide the PairDistributionFunction graph to the output module.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 374530 // PairDistributionFunctionGraph (<unidirectional association>)
+	  b parent class_ref 135298 // Graph
+      end
+
+      classrelation 128026 // forceGraph (<unidirectional association>)
+	relation 128026 --->
+	  a role_name "forceGraph" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128026 // forceGraph (<unidirectional association>)
+	  b parent class_ref 135298 // Graph
+      end
+
+      attribute 129178 "latcon"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Lattice Constant"
+      end
+    end
+
+    class 176130 "ResultsFiles"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 300290 "velocitiesHistogramData"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text file with the initial velocities distribution histogram data"
+      end
+
+      attribute 300802 "potentialAndPairDistFunctionData"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text file with the potential and the pair distribution function listed together"
+      end
+
+      attribute 301058 "energyData"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text fle with the potential, kineitc and total energies listed for all the steps of the simulation."
+      end
+
+      attribute 301186 "positionMovieData"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "This constains the name of the text file to be readen by xCryDen to generate the position movie."
+      end
+
+      operation 432898 "ResultsFiles"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "prefix" explicit_type "String"
+	  param in name "suffix" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor makes the ResultsFiles, and saves it's names using the given prefix and suffix.
+The extensions (.txt, .jpg ...) are not included yet.
+	@param prefix This is the name of the directory (absolute), and includes the last \"\\\" symbol for the folder, as an string.
+	@param suffix The name to be added to each file (experiment name). Do not include any special character.
+"
+      end
+
+      attribute 128410 "positionsData"
+	public explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "
+Name of the text file with the initial positions of the atoms"
+      end
+
+      attribute 128538 "velocitiesData"
+	public explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text file with the initial velocities on each direction"
+      end
+
+      attribute 128666 "potentialAndForce"
+	public explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text file with the potential and the force 
+isted together"
+      end
+
+      attribute 128794 "neighbourData"
+	public explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text file which contains the neigbour list for the first state,
+with the indexes of the neighbors for each particle and the total number of neigbours"
+      end
+
+      attribute 128922 "pairData"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Name of the text file which contains the pair distribution function data list for the last state,
+with the frequency for each distance distance"
+      end
+    end
+
+    class 128258 "State"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This class collects the data needed to go through the steps of the simulation.
+It holds the complete lattice in the form of a list of particles."
+      classrelation 128002 // particles (<directional aggregation>)
+	relation 128002 o-->
+	  stereotype "list"
+	  a role_name "particles" multiplicity "*" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128002 // particles (<directional aggregation>)
+	  b parent class_ref 128386 // Particle
+      end
+
+      attribute 194178 "e"
+	public type class_ref 136194 // InputData
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "*
+ * The configuration and simulation data that defines the experiment being executed
+ "
+      end
+
+      attribute 194562 "nStep"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "*
+ * number of the step in the simulation corresponding to the state object
+ * step 0 is the initialization state
+ "
+      end
+
+      operation 447874 "State"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "Default constructor"
+      end
+
+      operation 430210 "State"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "e" type class_ref 136194 // InputData
+	  param in name "particles" explicit_type "List<Particle>"
+	  param in name "energy" type class_ref 264450 // EnergyLog
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor is to be used only at the initialization of the system.
+The initialization step will be set to zero.
+@param e is the experiment data object used to create this initial state
+@param particles is the list of all particles of the system
+@energy an object of the class OutLog with the initial potential and kinetic energies"
+      end
+
+      operation 265858 "copy"
+	public return_type class_ref 128258 // State
+	nparams 1
+	  param in name "scope" explicit_type "List<Particle>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This operation returns a copy of the state with the relevant information for 
+the creation of the animations."
+      end
+
+      classrelation 224002 // energy (<directional aggregation>)
+	relation 222210 o-->
+	  a role_name "energy" multiplicity "1" public
+	    comment "The object that holds the values of the energy at the current state"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 224002 // energy (<directional aggregation>)
+	  b parent class_ref 264450 // EnergyLog
+      end
+
+      simplerelation 174082
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+    end
+
+    class 128386 "Particle"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 269570 // <realization>
+	relation 267138 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 269570 // <realization>
+	  b parent class_ref 309762 // Cloneable
+      end
+
+      operation 394882 "Particle"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "x" explicit_type "double"
+	  param in name "y" explicit_type "double"
+	  param in name "z" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor creates the particle assigning only the 
+position of the particle using the coordinates given 
+as arguments x, y and z. The velocity and the acceleration
+are also created but initialized with 0.0"
+      end
+
+      operation 316930 "clone"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a copy of the current object
+
+@return a copy of the current object"
+      end
+
+      attribute 193794 "r"
+	public type class_ref 231426 // R3Point
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The position of the particle
+ "
+      end
+
+      attribute 193922 "v"
+	public type class_ref 231426 // R3Point
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "he velocity of the particle
+ "
+      end
+
+      attribute 194050 "a"
+	public type class_ref 231426 // R3Point
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The acceleration of the particle
+ "
+      end
+
+      attribute 296834 "d"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The maximum possible displacement of the particle since the last
+time the vecinity has been calculated. This attribute is updated by
+the velocity calculation module at each step. It is reset to 0.0 
+by the neighbours module when the vecinity is recalculated."
+      end
+
+      simplerelation 173954
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+
+      attribute 128154 "vicinity"
+	public explicit_type "Integer"
+	multiplicity "*"
+	stereotype "set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Indexes of the particles that are in the vicinity of this particle "
+      end
+
+      attribute 128282 "numberNeighbors"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Number of neighbors for this particle "
+      end
+    end
+
+    class 135298 "Graph"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      associated_diagram classdiagram_ref 128130 // DomainClasses
+      classrelation 141186 // points (<directional aggregation>)
+	relation 141058 o-->
+	  stereotype "list"
+	  a role_name "points" public
+	    comment "A list of points in a bi-dimensional cartesian space used to plot graphs."
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 141186 // points (<directional aggregation>)
+	  b parent class_ref 135170 // R2Point
+      end
+
+      operation 433154 "Graph"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "points" explicit_type "List<R2Point>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+      end
+
+      simplerelation 174210
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+
+      operation 474242 "Graph"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "Default constructor"
+      end
+    end
+
+    class 231426 "R3Point"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 224258 // <generalisation>
+	relation 222466 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 224258 // <generalisation>
+	  b parent class_ref 135170 // R2Point
+      end
+
+      classrelation 269698 // <realization>
+	relation 267266 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 269698 // <realization>
+	  b parent class_ref 309762 // Cloneable
+      end
+
+      attribute 193666 "z"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Coordinate in the z axis for the three dimensional value
+ "
+      end
+
+      operation 227458 "distanceTo"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "r3Point" type class_ref 231426 // R3Point
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calculates the distance between two points in R3 space (module of the difference)
+
+@param the point to which the distance will be calculated
+@return the module of the distance between this and the point given as argument, 
+it is returned as a double value.
+ "
+      end
+
+      operation 395010 "R3Point"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "x" explicit_type "double"
+	  param in name "y" explicit_type "double"
+	  param in name "z" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 395138 "R3Point"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 317186 "clone"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a copy of the current object
+
+@return a copy of the current object"
+      end
+
+      operation 128026 "kinetic"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calculates the Kinetic Energy of the particle with Vx, Vy and Vz"
+      end
+    end
+
+    class 135170 "R2Point"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128002 "x"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The x coordinate in an cartesian space"
+      end
+
+      attribute 128130 "y"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The y coordinate in a cartesian space"
+      end
+
+      operation 447746 "R2Point"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "Default constructor of the class"
+      end
+
+      operation 430082 "R2Point"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "x" explicit_type "double"
+	  param in name "y" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "Constructor of the class that assign values to x and y"
+      end
+
+      operation 317058 "clone"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a copy of the current object
+
+@return a copy of the current object"
+      end
+
+      classrelation 269826 // <realization>
+	relation 267394 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 269826 // <realization>
+	  b parent class_ref 309762 // Cloneable
+      end
+    end
+
+    class 257282 "Exception"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    classdiagram 128002 "Interfaces"
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+      size A4-Landscape
+    end
+
+    classdiagram 128130 "DomainClasses"
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+      size E
+    end
+
+    classdiagram 208514 "Modules"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
+
+    class 264450 "EnergyLog"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 461058 "clone"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a copy of the current object
+
+@return a copy of the current object"
+      end
+
+      attribute 194434 "u"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "*
+ * The potential  energy of the system at the current state, it is hold in  a double primitive value
+ "
+      end
+
+      attribute 194306 "k"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "*
+ * The kinetic energy of the system at the current state, it is hold in  a double primitive value
+ "
+      end
+
+      classrelation 359938 // <realization>
+	relation 357250 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 359938 // <realization>
+	  b parent class_ref 309762 // Cloneable
+      end
+
+      attribute 128026 "total"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The total  energy of the system at the current state (sum of the kinetic and potential energy), it is hold in  a double primitive value"
+      end
+    end
+
+    class 309762 "Cloneable"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Represents the interface java standard for duplicating objects"
+    end
+
+    classdiagram 255874 "Dependencies"
+      classdiagramsettings draw_all_relations no hide_attributes yes hide_operations yes member_max_width 0 end
+      size A4
+    end
+
+    class 400386 "Runnable"
+      visibility package stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+  end
+
+  deploymentview 141058 "common"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 141058 "INeighbours"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 197506 // INeighbours
+      end
+    end
+
+    artifact 141186 "IInit"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+	class_ref 196994 // IInit
+      end
+    end
+
+    artifact 141314 "ResultsFiles"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 176130 // ResultsFiles
+      end
+    end
+
+    artifact 141442 "InputData"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 136194 // InputData
+      end
+    end
+
+    artifact 141570 "IPMS"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+      end
+    end
+
+    artifact 141698 "IOutput"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+	class_ref 224642 // IOutput
+      end
+    end
+
+    artifact 141826 "IForce"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+	class_ref 128002 // IForce
+      end
+    end
+
+    artifact 142210 "IVelocity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+	class_ref 128514 // IVelocity
+      end
+    end
+
+    artifact 155778 "ILongSimulationManager"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${definition}
+?>
+"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+      end
+    end
+
+    artifact 141954 "State"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128258 // State
+      end
+    end
+
+    artifact 142082 "Particle"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128386 // Particle
+      end
+    end
+
+    artifact 142338 "R2Point"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 135170 // R2Point
+      end
+    end
+
+    artifact 142466 "Graph"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 135298 // Graph
+      end
+    end
+
+    artifact 142594 "R3Point"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 231426 // R3Point
+      end
+    end
+
+    artifact 149122 "FileNotFound"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+      end
+    end
+
+    artifact 149250 "FileCorrupted"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+      end
+    end
+
+    artifact 216450 "EnergyLog"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 264450 // EnergyLog
+      end
+    end
+  end
+end

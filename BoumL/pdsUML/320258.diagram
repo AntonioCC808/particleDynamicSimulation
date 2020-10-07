@@ -1,0 +1,35 @@
+format 75
+
+packagecanvas 128386 
+  package_ref 213762 // java.util
+    xyzwh 48 301 2000 65 81
+end
+packagecanvas 131714 
+  package_ref 256514 // java.io
+    xyzwh 67 154 2000 65 81
+end
+packagecanvas 134402 
+  package_ref 128002 // GlobalView
+    xyzwh 432 308 2000 73 81
+end
+classcanvas 136322 class_ref 414850 // GUI59
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyz 234 203 2000
+end
+packagecanvas 136706 
+  package_ref 263554 // t59
+    xyzwh 436 152 2005 65 81
+end
+simplerelationcanvas 136450 simplerelation_ref 291714
+  from ref 136322 z 2001 stereotype "<<import>>" xyz 148 222.5 3000 to ref 131714
+end
+simplerelationcanvas 136578 simplerelation_ref 291842
+  from ref 136322 z 2001 stereotype "<<import>>" xyz 138.5 303.5 3000 to ref 128386
+end
+simplerelationcanvas 136834 simplerelation_ref 291970
+  from ref 136322 z 2006 stereotype "<<import>>" xyz 354 220.5 3000 to ref 136706
+end
+simplerelationcanvas 136962 simplerelation_ref 292098
+  from ref 136322 z 2001 stereotype "<<import>>" xyz 352 308 3000 to ref 134402
+end
+end

@@ -1,0 +1,6 @@
+class Graph
+!!!433154.java!!!	Graph(in points : List<R2Point>)
+super();
+this.points = points;
+!!!474242.java!!!	Graph()
+super();

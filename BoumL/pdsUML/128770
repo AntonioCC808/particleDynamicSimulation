@@ -1,0 +1,276 @@
+format 222
+"Force" // Force
+  revision 16
+  modified_by 26 "antonio"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pds/forceModule/"
+  java_package "pds.forceModule"
+  classview 234498 "ClassView"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 180354 // forceModule
+    classdiagram 249346 "forceClassDiagram"
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+      size A4-Landscape
+    end
+
+    class 303234 "Force"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This class calculates the current accelerations for all particles."
+      attribute 254594 "s"
+	protected type class_ref 128258 // State
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The state for which forces and hence accelerations are calculated.
+This value is initialized by the constructor."
+      end
+
+      operation 309762 "createForce"
+	class_operation public return_type class_ref 128002 // IForce
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This static method creates an object of a class that implements the IForce interface
+
+@param s the reference to the state object that holds the system for which the 
+acceleration and potentials will be calculated.
+@return an object of a class that implements the IForce interface"
+      end
+
+      operation 309890 "Force"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor receives the state for which the Force object
+will be created.
+
+@param s the state for whose particles the accelerations will be 
+calculated when requested"
+      end
+
+      operation 310018 "calcForce"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calculates the forces that apply to all particles and update the 
+corresponding accelerations in the current State. The operation 
+returns the current potential energy of the system. 
+The positions of every particle are taken from State, as well as the 
+neighbour list of each particle. For a particle, just the particles 
+stated in the neighbour list are taken into account.
+The force acting over a particle because of the other ones has three components. 
+First, it calculates the distance between each neighbour particle and 
+the force is calculated using the equation for every particle against this one,
+therefore the total force in a component is the sum of all these pair forces.
+The force acting on a particle operates in the same way for the 3 components.
+
+@return a double real value with the current potential energy of the system."
+      end
+
+      operation 310146 "evalPotential"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "distance" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This function returrns the potential between two particles of the 
+current experiment evaluated for a concrete distance given as input
+parameter.
+
+@param distance value in meters that indicates the distance between 
+the particles for which the potential is to be calculated
+@return value of the potential calculated for two particles of the current 
+experiment when they are at the distance given as invocation argument.  "
+      end
+
+      operation 310274 "drawPotential"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This method returns a graph in the form of a list of points (x,y) that 
+describe the potential for the range of distance vales observed in the 
+current experiment.
+The number of points is taken from the method numberOfPoints that comes from Input.
+The objective of this method is to provide (review) graph which contains two list of numbers
+In the x coordinate we take as a first value, the minimum distance mind and as a maximum
+value the maximum distance maxd. The intermediate points are values separate (maxd-mind)/numberOfPoints
+In the Y coordinate, the potential for each value of the distances is calculated using the method evalPotential
+
+@return a graph that is a list of pairs of numbers (x,y). These values 
+are of the type double. x represents the distance in meters and y potentials
+in energy units. The first and last points in the graph correspond to the minimum and 
+maximum distances observed among all particles in the current experiment."
+      end
+
+      operation 310402 "drawPairDistributionFunction"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This method takes from the class Force maxd and mind from the current state.
+It will divide the interval between mind and maxd in some divisions which 
+are collected in X. It will calculate the number of particles in each division
+and collect these values on the Y axis."
+      end
+
+      simplerelation 167298
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128002 // GlobalView
+      end
+
+      classrelation 263042 // <realization>
+	relation 260610 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 263042 // <realization>
+	  b parent class_ref 128002 // IForce
+      end
+
+      attribute 129050 "sigmaReduced"
+	class_attribute const_attribute public explicit_type "double"
+	init_value "1.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Parameter sigma of the Lennard-Jones potential in reduced units"
+      end
+
+      operation 128410 "drawForce"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      simplerelation 128152
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+    end
+  end
+
+  deploymentview 180354 "forceModule"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 182018 "Force"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 303234 // Force
+      end
+    end
+  end
+end

@@ -1,0 +1,16 @@
+class State
+!!!447874.java!!!	State()
+super();
+!!!430210.java!!!	State(in e : Experiment, in particles : List<Particle>, in energy : SimLog)
+this.nStep     = 0;
+this.e         = e;
+this.particles = particles;
+this.energy    = energy;
+!!!265858.java!!!	copy(in scope : List<Particle>) : State
+	  State s = new State();
+	  s.nStep = this.nStep;
+	  s.e = this.e;
+	  s.particles = new ArrayList<Particle>(scope.size());
+	  for (Particle p: scope) s.particles.add((Particle) p.clone());
+	  
+	  return s;

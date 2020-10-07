@@ -1,0 +1,42 @@
+format 75
+
+packagecanvas 128002 
+  package_ref 213762 // java.util
+    xyzwh 382 102 2000 67 81
+end
+classcanvas 128130 class_ref 136194 // InputData
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyz 126 162 2000
+end
+classcanvas 128258 class_ref 128386 // Particle
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyz 168 295 3005
+end
+classcanvas 128770 class_ref 128258 // State
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyz 394 340 2000
+end
+classcanvas 128898 class_ref 135298 // Graph
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_context default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+  xyz 576 303 2000
+end
+packagecanvas 129538 
+  package_ref 256514 // java.io
+    xyzwh 41 268 2000 65 81
+end
+simplerelationcanvas 129026 simplerelation_ref 173826
+  from ref 128130 z 2001 stereotype "<<import>>" xyz 260 160 3000 to ref 128002
+end
+simplerelationcanvas 129154 simplerelation_ref 173954
+  from ref 128258 z 3006 stereotype "<<import>>" xyz 267 230 3000 to ref 128002
+end
+simplerelationcanvas 129282 simplerelation_ref 174082
+  from ref 128770 z 2001 stereotype "<<import>>" xyz 381 260 3000 to ref 128002
+end
+simplerelationcanvas 129410 simplerelation_ref 174210
+  from ref 128898 z 2001 stereotype "<<import>>" xyz 480 238 3000 to ref 128002
+end
+simplerelationcanvas 129666 simplerelation_ref 270978
+  from ref 128130 z 2001 stereotype "<<import>>" xyz 92 234 3000 to ref 129538
+end
+end

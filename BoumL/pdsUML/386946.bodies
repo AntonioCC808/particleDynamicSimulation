@@ -1,0 +1,168 @@
+class Output
+!!!439042.java!!!	createOutput(in experiment : pds.common.InputData, in resultsFiles : pds.common.ResultsFiles, in s : pds.common.State) : IOutput
+return new Output(experiment, resultsFiles, s);
+!!!439170.java!!!	Output(in experiment : InputData, in resultsFiles : ResultsFiles, in s : State)
+		this.experiment = experiment;
+		this.resultsFiles = resultsFiles;
+		this.s = s;
+!!!141594.java!!!	results() : ResultsFiles
+// This function creates the files from the graphs that have been stored along
+// the simulation
+		positionsTextFile(s);
+		velocitiesTextFile(s);
+		velocityTextFile(experiment.InitialVelocityDistribution);
+		energyTextFile(experiment.energyLog);
+		potentialAndForceTextFile(experiment.potentialGraph, experiment.forceGraph);
+		neighbourTextFile(s);
+		return resultsFiles;
+!!!128024.java!!!	positionsTextFile(in s : State) : void
+PrintWriter out = null;
+		try {
+			// Open the file
+			out = new PrintWriter(new FileWriter(resultsFiles.positionsData + ".txt"));
+			// Write the data in the file with this format
+			out.println(" Positions of the atoms in each direction in reduced units at the initial state for  " + experiment.nickname);
+			out.printf(" %-25s %20s %20s %20s %n","Atom", "r(x)", "r(y)", "r(z)" );
+
+			for (int i = 0; i < s.particles.size(); i++) {
+				out.printf(" %-25s %20s %20s %20s %n", i+1, s.particles.get(i).r.x,s.particles.get(i).r.y,s.particles.get(i).r.z);
+			}
+		} catch (IOException e) {
+			System.out.println("Error al abrir " + resultsFiles.positionsData);
+			resultsFiles.positionsData = null;
+		} finally {
+			if (out != null)
+				// Close the file
+				out.close();
+
+		}
+!!!128152.java!!!	velocitiesTextFile(in s : State) : void
+PrintWriter out = null;
+		try {
+			// Open the file
+			out = new PrintWriter(new FileWriter(resultsFiles.velocitiesData + ".txt"));
+			// Write the data in the file with this format
+			out.println(" Velocities of the atoms in each direction in reduced units at the initial state for  " + experiment.nickname);
+			out.println(" The variance of the normal (Gaussian) distribution is = " + Math.sqrt(experiment.temperature));
+			out.printf(" %-25s %20s %20s %20s %n","Atom", "V(x)", "V(y)", "V(z)" );
+
+			for (int i = 0; i < s.particles.size(); i++) {
+				out.printf(" %-25s %20s %20s %20s %n", i+1, s.particles.get(i).v.x,s.particles.get(i).v.y,s.particles.get(i).v.z);
+			}
+		} catch (IOException e) {
+			System.out.println("Error al abrir " + resultsFiles.velocitiesData);
+			resultsFiles.velocitiesData = null;
+		} finally {
+			if (out != null)
+				// Close the file
+				out.close();
+
+		}
+!!!128280.java!!!	velocityTextFile(in velocityData : Graph) : void
+PrintWriter out = null;
+		try {
+			// Open the file
+			out = new PrintWriter(new FileWriter(resultsFiles.velocitiesHistogramData + ".txt"));
+			// Write the data in the file with this format
+			out.println(" Histogram for the intial velocities of " + experiment.nickname);
+			out.println(" The velocities are initially chosen randomly from a Gaussian distribution                ");
+			out.println(" The mean value of the normal (Gaussian) distribution is zero");
+			out.println(
+					" The variance of the normal (Gaussian) distribution is = " + Math.sqrt(experiment.temperature));
+			out.printf(" %-25s %20s %n", "Velocity(reduced units)", "Frequency");
+
+			for (int i = 0; i < velocityData.points.size(); i++) {
+				out.printf(" %-25f %20.0f %n", velocityData.points.get(i).x, velocityData.points.get(i).y);
+			}
+		} catch (IOException e) {
+			System.out.println("Error al abrir " + resultsFiles.velocitiesHistogramData);
+			resultsFiles.velocitiesHistogramData = null;
+		} finally {
+			if (out != null)
+				// Close the file
+				out.close();
+
+		}
+!!!128408.java!!!	neighbourTextFile(in s : pds.common.State) : void
+PrintWriter out = null;
+		try {
+			// Open the file
+			out = new PrintWriter(new FileWriter(resultsFiles.neighbourData+".txt"));
+			// Write the data in the file with this format
+			out.println(" Neighbour List for the initial state of " +experiment.nickname);		
+			out.println(" The value of the cutOff List is rl= " +experiment.cutoffList);		
+			for(int i=0;i<s.particles.size();i++){
+				   out.println(" List of neighbors of atom "+(1+i));
+				   out.println(" Position of atom: "+(1+i)+": "+s.particles.get(i).r.x+"     "+s.particles.get(i).r.y+"     "+s.particles.get(i).r.z);
+				   out.println(" Number of Neighbors: "+s.particles.get(i).numberNeighbors);
+	               out.printf(" %-25s %45s %n","Index","Position of neighbors (reduced units)");
+	               for (Integer jneig : s.particles.get(i).vicinity) {
+	               out.printf(" %-25d %15f %15f %15f %n",jneig+1,s.particles.get(jneig).r.x,s.particles.get(jneig).r.y,s.particles.get(jneig).r.z);
+	           }
+	               out.println();
+			}
+		} catch (IOException e) {
+			System.out.println("Error al abrir "+resultsFiles.neighbourData);
+			resultsFiles.neighbourData=null;
+		} finally {
+			if (out != null)
+				 // Close the file
+				out.close();
+
+		}
+!!!128536.java!!!	potentialAndForceTextFile(in potentialData : Graph, in forceData : Graph) : void
+PrintWriter out = null;
+		try {
+			// Open the file
+			out = new PrintWriter(new FileWriter(resultsFiles.potentialAndForce + ".txt"));
+			// Write the data in the file with this format
+			out.println(" Data of the potential and magnitude of the force versus distance for " + experiment.nickname);
+			out.println(
+					" The distances are values between the maximum and minimum distance between the particles of the first state");
+			out.println(" The potential and the force are shifted to avoid discontinuity at the cutOff Radius rc= "
+					+ experiment.cutoffRadius);
+			out.println(" Epsilon and Sigma in reudced units are 1");
+			out.printf(" %-25s %25s %17s %n", "Distance(sigma units)", "Potential Energy", "Force");
+
+			for (int i = 0; i < potentialData.points.size(); i++) {
+				out.printf(" %-25f %20f %23f %n", potentialData.points.get(i).x, potentialData.points.get(i).y,
+						forceData.points.get(i).y);
+			}
+		} catch (IOException e) {
+			System.out.println("Error al abrir " + resultsFiles.potentialAndForce);
+			resultsFiles.potentialAndForce = null;
+		} finally {
+			if (out != null)
+				// Close the file
+				out.close();
+
+		}
+!!!128664.java!!!	energyTextFile(in energyLog : List<EnergyLog>) : void
+PrintWriter out = null;
+		try {
+			// Open the file
+			out = new PrintWriter(new FileWriter(resultsFiles.energyData + ".txt"));
+			// Write the data in the file with this format
+			out.println(" Potential, Kinetic and Total energy per atom (divided by the total number of atoms) of the "
+					+ experiment.nickname);
+			out.println(" from the first step to the " + experiment.nSteps);
+			out.println(
+					" The potential energy is calculated with the Lennard-Jones potential shiftted to avoid discontinuties");
+			out.println(" The kinetic energy is the sum of 1/2v**2 of each particle");
+			out.println(" The total energy is the sum of the kinetic and potential energy ");
+			out.printf(" %-25s %25s %25s %25s %n", "Step", "Potential Energy per atom", "Kinetic Energy per atom",
+					"Total Energy per atom");
+
+			for (int i = 0; i < energyLog.size(); i++) {
+				out.printf(" %-25d %20f %20f %30f %n", i + 1, energyLog.get(i).u / s.particles.size(),
+						energyLog.get(i).k / s.particles.size(), energyLog.get(i).total / s.particles.size());
+			}
+		} catch (IOException e) {
+			System.out.println("Error al abrir " + resultsFiles.energyData);
+			resultsFiles.energyData = null;
+		} finally {
+			if (out != null)
+				// Close the file
+				out.close();
+
+		}

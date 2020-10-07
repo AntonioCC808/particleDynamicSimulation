@@ -1,0 +1,27 @@
+class R3Point
+!!!227458.java!!!	distanceTo(in r3Point : R3Point) : double
+	  // Calculation of the relative position between the two atoms
+		double relavPosX = r3Point.x - x;
+		double relavPosY = r3Point.y - y;
+		double relavPosZ = r3Point.z - z;
+		// Module of the the relative distance
+		double distance = Math.sqrt(Math.pow(relavPosX, 2) + Math.pow(relavPosY, 2) + Math.pow(relavPosZ, 2));
+		// The distance between two points in space will be the subtracting of their
+		// modules
+		return distance;
+!!!395010.java!!!	R3Point(in x : double, in y : double, in z : double)
+	  super(x,y);
+	  this.z = z;
+!!!395138.java!!!	R3Point()
+	  super();
+!!!317186.java!!!	clone() : Object
+            Object obj=null;
+            try{
+                obj=super.clone();
+            }catch(Exception ex){  //Use CloneNotSupportedException if possible
+                System.out.println(" It was not possible to clone...");
+            }
+            return obj;
+!!!128026.java!!!	kinetic() : double
+double kineticEnergy = 1 / 2.0 * (Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+		return kineticEnergy;

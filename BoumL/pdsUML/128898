@@ -1,0 +1,193 @@
+format 222
+"Velocity" // Velocity
+  revision 15
+  modified_by 26 "antonio"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pds/velocityModule/"
+  java_package "pds.velocityModule"
+  comment "Objects of this class will calculate current velocities for all particles."
+  classview 227970 "ClassView"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 173826 // velocityModule
+    classdiagram 242818 "velocityClassDiagram"
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+      size A4-Landscape
+    end
+
+    class 296706 "Velocity"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 261122 "s"
+	protected type class_ref 128258 // State
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The state for which velocities and positions are calculated.
+This value is initialized by the constructor."
+      end
+
+      attribute 261250 "f"
+	protected type class_ref 128002 // IForce
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The object that will be used to do the calculus of accelerations,
+It is initialized by the constructor."
+      end
+
+      operation 302850 "createVelocity"
+	class_operation public return_type class_ref 128514 // IVelocity
+	nparams 2
+	  param in name "s" type class_ref 128258 // State
+	  param in name "f" type class_ref 128002 // IForce
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This static method returns a Velocity object that implements the interface IVelocity
+
+@param s the state for whose particles the velocities and positions will be 
+calculated when requested
+@param f the force calculation object that will assign accelerations
+@return an object of a class that implements the interface IVelocity"
+      end
+
+      operation 302978 "Velocity"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "s" type class_ref 128258 // State
+	  param in name "f" type class_ref 128002 // IForce
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor receives the state for which the Velocity object
+will be created and the force object that calculates the acceleration
+of all particles.
+
+@param s the state for whose particles the velocities and positions 
+will be calculated when requested
+@param f the force calculation object that will assign accelerations"
+      end
+
+      operation 303234 "calcVelocity"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This operation calculates the positions and velocities for the given 
+state and force objects. It returns the largest of the displacements of the 
+particles of the system since the last calculation of the neighbours lists.
+It must update the kinetic energy of the current state.
+
+@return the largest of the displacements of the particles since the last time the vicinity was calculated. "
+      end
+
+      simplerelation 160770
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128002 // GlobalView
+      end
+
+      classrelation 256386 // <realization>
+	relation 253954 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 256386 // <realization>
+	  b parent class_ref 128514 // IVelocity
+      end
+    end
+  end
+
+  deploymentview 173826 "velocityModule"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 175490 "Velocity"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 296706 // Velocity
+      end
+    end
+  end
+end

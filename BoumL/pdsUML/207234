@@ -1,0 +1,326 @@
+format 222
+"Output" // Output
+  revision 48
+  modified_by 26 "ANTONIO CUADCOB"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pds/outputModule/"
+  java_package "pds.outputModule"
+  classview 208386 "ClassView"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 154242 // outputModule
+    classdiagram 306306 "outputClassDiagram"
+      classdiagramsettings draw_all_relations no show_members_full_definition yes show_members_visibility yes member_max_width 0 show_parameter_dir no end
+      size E
+    end
+
+    class 386946 "Output"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      associated_diagram classdiagram_ref 306306 // outputClassDiagram
+      classrelation 353410 // <realization>
+	relation 350722 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 353410 // <realization>
+	  b parent class_ref 224642 // IOutput
+      end
+
+      classrelation 374018 // experiment (<unidirectional association>)
+	relation 371330 --->
+	  a role_name "experiment" private
+	    comment "
+The experiment object, with (almost) all information to generate output, with particles positions
+and with all constants necesary to convert units.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 374018 // experiment (<unidirectional association>)
+	  b parent class_ref 136194 // InputData
+      end
+
+      classrelation 374146 // resultsFiles (<unidirectional association>)
+	relation 371458 --->
+	  a role_name "resultsFiles" private
+	    comment "
+The results files object, whose names are taken, edited (with the extension), and then returned.
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 374146 // resultsFiles (<unidirectional association>)
+	  b parent class_ref 176130 // ResultsFiles
+      end
+
+      operation 439042 "createOutput"
+	class_operation public return_type class_ref 224642 // IOutput
+	nparams 3
+	  param in name "experiment" explicit_type "pds.common.InputData"
+	  param in name "resultsFiles" explicit_type "pds.common.ResultsFiles"
+	  param in name "s" explicit_type "pds.common.State"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This static method returns an OutputModule object that implements the interface IOutput.
+It does nothing else, as experiment data is not given yet.
+
+@return an object that implements the interface IOutput"
+      end
+
+      operation 439170 "Output"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "experiment" type class_ref 136194 // InputData
+	  param in name "resultsFiles" type class_ref 176130 // ResultsFiles
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor receives the inputData and the name of the results files for
+	 * which the Output object will be created.)."
+      end
+
+      operation 141594 "results"
+	public return_type class_ref 176130 // ResultsFiles
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 346754 // <dependency>
+	relation 344066 -_->
+	  a package
+	    java "${type}"
+	    classrelation_ref 346754 // <dependency>
+	  b parent class_ref 176130 // ResultsFiles
+      end
+
+      classrelation 346882 // <dependency>
+	relation 344194 -_->
+	  a default
+	    classrelation_ref 346882 // <dependency>
+	  b parent class_ref 135298 // Graph
+      end
+
+      simplerelation 244098
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128002 // GlobalView
+      end
+
+      simplerelation 271362
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 256514 // java.io
+      end
+
+      attribute 135706 "s"
+	protected type class_ref 128258 // State
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128024 "positionsTextFile"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that makes a .txt file with the velocity (in its units) and with the
+Frequency of each one. This .txt file contains 2 columns, one with the velocities and another with the frequencies. 
+
+ @param velocityData the Graph object with the velocities and frequencies"
+      end
+
+      operation 128152 "velocitiesTextFile"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that makes a .txt file with the velocity (in its units) and with the
+Frequency of each one. This .txt file contains 2 columns, one with the velocities and another with the frequencies.
+
+@param velocityData the Graph object with the velocities and frequencies"
+      end
+
+      operation 128280 "velocityTextFile"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "velocityData" type class_ref 135298 // Graph
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that makes a .txt file with the velocity (in its units) and with the Frequency of each one. This .txt file contains 2 columns, one with the
+velocities and another with the frequencies. 
+
+@param velocityData the Graph object with the velocities and frequencies"
+      end
+
+      operation 128408 "neighbourTextFile"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "s" explicit_type "pds.common.State"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that makes a .txt file with the neighbour list of each atom. This .txt file 
+contains the positions of the neighbors for each atom.
+
+@param s the initial state in which the neighbour list and the positions of the atoms are"
+      end
+
+      operation 128536 "potentialAndForceTextFile"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "potentialData" type class_ref 135298 // Graph
+	  param in name "forceData" type class_ref 135298 // Graph
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that makes a .txt file with the force between 2 particles 'r' (in its units), the value of the pair distribution function in that point and the value of the potential in the same 'r'. This .txt file contains 3 columns, one with the values of 'r', another with the values of the pair distribution function 'G(r)', and another with the values of the potential 'V(r)'.
+
+@param potentialData a Graph with the distances between the atoms and the corresponding potential energy
+
+@param forceData     a Graph with the distances between the atoms and the corresponding force"
+      end
+
+      operation 128664 "energyTextFile"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "energyLog" explicit_type "List<EnergyLog>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Method that makes a .txt file with the steps and with the potential, kinetic and total energy per atom (in its units). This .txt file contains 4 columns, one with the steps, another with the values of the potential energies, another with the values of the kinetic energies and the last one with the values of the total energy.
+
+@param energyLog A List with the potential, kinetic and total energies for each step"
+      end
+
+      simplerelation 128024
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+
+    end
+  end
+
+  deploymentview 154242 "outputModule"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 257794 "Output"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 386946 // Output
+      end
+    end
+  end
+end

@@ -1,0 +1,184 @@
+format 222
+"Neighbours" // Neighbours
+  revision 19
+  modified_by 26 "antonio"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pds/neighboursModule/"
+  java_package "pds.neighboursModule"
+  classview 221442 "ClassView"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 167298 // neighboursModule
+    classdiagram 236290 "neighboursClassDiagram"
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+      size A4-Landscape
+    end
+
+    class 290178 "Neighbours"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This class calculates the current neighbours lists for all particles."
+      attribute 267778 "s"
+	protected type class_ref 128258 // State
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "The state for which the vecinities of all particles are calculated.
+This value is initialized by the constructor."
+      end
+
+      classrelation 249730 // <realization>
+	relation 247298 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 249730 // <realization>
+	  b parent class_ref 197506 // INeighbours
+      end
+
+      operation 220034 "createNeighbours"
+	class_operation public return_type class_ref 197506 // INeighbours
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This static method returns a Neighbours object that implements the interface INeighbours
+
+@param s the state for whose particles the vicinity will be calculated when needed
+@return an object of a class that implements the interface INeighbours"
+      end
+
+      operation 295810 "Neighbours"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This constructor receives the state for which the Neighbours object
+will be created.
+
+@param s the state for whose particles the vecinity will be calculated when needed"
+      end
+
+      operation 296322 "calcVecinity"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "maxDisplacement" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This methode verifies the need to recalculate the vecinity of the particles
+and do it if necessary. 
+It accumulates the maxDisplacements input argument and re-calculates the 
+vecinities if the accumulated displacement exceeds the maximum tolerable.
+If the vecinities need to be recalculated it calculates all the vecinities lists 
+and reset the accumulated displacement to 0.0.
+
+@param maxDisplacement the value of the largest displacement suffered in the 
+ongoing step by any of the particles in the system.
+@return true if the vecinities have been recalculated false otherwise"
+      end
+
+      simplerelation 154242
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128002 // GlobalView
+      end
+
+      simplerelation 298754
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+    end
+  end
+
+  deploymentview 167298 "neighboursModule"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 244738 "Neighbours"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 290178 // Neighbours
+      end
+    end
+  end
+end

@@ -1,0 +1,29 @@
+window_sizes 3200 1644 771 2423 1423 136
+cleanlooks_style
+diagrams
+  classdiagram_ref 128130 // DomainClasses
+    1521 853 100 E 0 0
+  classdiagram_ref 193794 // pdsClassDiagram
+    1370 853 100 E 0 0
+  classdiagram_ref 229762 // initClassDiagram
+    202 185 100 A4-Landscape 0 0
+  classdiagram_ref 242818 // velocityClassDiagram
+    202 185 100 A4-Landscape 0 0
+  classdiagram_ref 236290 // neighboursClassDiagram
+    1585 853 100 A4-Landscape 0 0
+  classdiagram_ref 249346 // forceClassDiagram
+    202 185 100 A4-Landscape 0 0
+  active  classdiagram_ref 306306 // outputClassDiagram
+    2581 1423 100 E 0 0
+  classdiagram_ref 255874 // Dependencies
+    202 185 100 A4 0 0
+end
+show_stereotypes
+selected 
+  package_ref 129 // pdsUML
+open
+  classview_ref 128002 // Common
+  classview_ref 227970 // ClassView
+  class_ref 386946 // Output
+end
+end

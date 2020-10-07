@@ -1,0 +1,9 @@
+class SimLog
+!!!461058.java!!!	clone() : Object
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(Exception ex){ //Use CloneNotSupportedException if possible
+            System.out.println(" It was not possible to clone...");
+        }
+        return obj;

@@ -1,0 +1,43 @@
+class Neighbours
+!!!220034.java!!!	createNeighbours(in s : State) : INeighbours
+	 
+		  return new Neighbours(s);
+
+!!!295810.java!!!	Neighbours(in s : State)
+      this.s = s;
+!!!296322.java!!!	calcVecinity(in maxDisplacement : double) : bool
+ //Some variables that will be needed
+	  //Length of the supercell (in units of sigma)
+	  double boxSize=s.e.numberCells*s.e.latcon/s.e.sigma;
+	  if (maxDisplacement>(s.e.cutoffList-s.e.cutoffRadius)) {
+		  
+		  for (int iatom=0;iatom<s.particles.size()-1;iatom++) {//iatom Counter for loops on atoms
+			  //Find the relative position between the two atoms
+			  s.particles.get(iatom).vicinity.clear();
+			  
+			  for (int jneig=iatom+1;jneig<s.particles.size();jneig++) { //Counter for loops on possible neighbors
+				  //Relative distance between two atoms
+				  double revDisX=s.particles.get(iatom).r.x-s.particles.get(jneig).r.x;
+				  double revDisY=s.particles.get(iatom).r.y-s.particles.get(jneig).r.y;
+				  double revDisZ=s.particles.get(iatom).r.z-s.particles.get(jneig).r.z;
+				  // Consider the periodic boundary conditions. The calculation of minimum 
+				  // image distances is simplified by the use of reduced units: 
+				  // the length of the sigma parameter is taken to define the
+				  //fundamental unit of length in the simulation. 
+				  revDisX=revDisX-boxSize*(Math.round(revDisX/boxSize) );
+				  revDisY=revDisY-boxSize*(Math.round(revDisY/boxSize));
+				  revDisZ=revDisZ-boxSize*(Math.round(revDisZ/boxSize));
+				  //Distance module
+				  double modRelDistance=Math.sqrt(Math.pow(revDisX, 2)+Math.pow(revDisY, 2)+Math.pow(revDisZ, 2));
+				  //Compare the square of the distance with the square of the outer radius of the Verlet list.
+				  if (modRelDistance<s.e.cutoffList) {
+					  s.particles.get(iatom).vicinity.add(jneig);
+				  }	  
+				  s.particles.get(iatom).numberNeighbors=s.particles.get(iatom).vicinity.size();
+			  }
+			  s.particles.get(iatom).d=0;
+		  }
+		  s.particles.get(s.particles.size()-1).d=0;
+		  return true;
+	  } 
+	  return false;

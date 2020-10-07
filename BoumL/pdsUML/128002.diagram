@@ -1,0 +1,27 @@
+format 222
+
+classcanvas 128002 class_ref 128002 // IForce
+  classdiagramsettings member_max_width 0 end
+  xyz 420 332 2000
+end
+classcanvas 128130 class_ref 128514 // IVelocity
+  classdiagramsettings member_max_width 0 end
+  xyz 834 291 2000
+end
+classcanvas 128258 class_ref 224642 // IOutput
+  classdiagramsettings member_max_width 0 end
+  xyz 721 103 2000
+end
+classcanvas 128386 class_ref 162946 // IPMS
+  classdiagramsettings member_max_width 0 end
+  xyz 354 34 2000
+end
+classcanvas 128514 class_ref 197506 // INeighbours
+  classdiagramsettings member_max_width 0 end
+  xyz 20 312 2000
+end
+classcanvas 128642 class_ref 196994 // IInit
+  classdiagramsettings member_max_width 0 end
+  xyz 38 113 2006
+end
+end

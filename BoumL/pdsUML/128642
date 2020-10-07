@@ -1,0 +1,195 @@
+format 222
+"Init" // Init
+  revision 18
+  modified_by 26 "antonio"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pms/initModule/"
+  java_package "pms.initModule"
+  classview 214914 "ClassView"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 160770 // initModule
+    classdiagram 229762 "initClassDiagram"
+      classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+      size A4-Landscape
+    end
+
+    class 283650 "Init"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 254466 "initialVelocityDistribution"
+	protected type class_ref 135298 // Graph
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "This is a graph with the histogram of velocities as they are 
+assigned at the initialization of the lattice. It gets its
+value at the end of the doInit operation."
+      end
+
+      operation 488194 "createInit"
+	class_operation public return_type class_ref 196994 // IInit
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This static method returns an InitModule object that implements the interface IInit.
+
+@return an object that implements the interface IInit"
+      end
+
+      operation 289026 "doInit"
+	public return_type class_ref 128258 // State
+	nparams 1
+	  param in name "experiment" type class_ref 136194 // InputData
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Create the initial state for the given experiment and returns it with the 
+initial positions, velocities and neighbours lists for all particles.
+
+@param experiment is the experiment object with the data needed to configure and 
+run the simulation
+@return a fresh new State ready to start the simulation"
+      end
+
+      operation 289154 "velocityDistribution"
+	public return_type class_ref 135298 // Graph
+	nparams 1
+	  param in name "s" type class_ref 128258 // State
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Calculates a Graph showing the statistical distribution of velocities for 
+all the particles of the system at the given state.
+
+@param s areference to the State object for which the distribution will be calculated
+@return a reference to the Graph object that holds the velocities distribution function "
+      end
+
+      operation 289282 "getInitialVelocityDistribution"
+	public return_type class_ref 135298 // Graph
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a Graph showing the statistical distribution of velocities for 
+all the particles of the system as they were assigned at the initial state.
+
+@return a reference to the Graph object that holds the velocities distribution function "
+      end
+
+      simplerelation 147714
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128002 // GlobalView
+      end
+
+      classrelation 243074 // <realization>
+	relation 240642 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 243074 // <realization>
+	  b parent class_ref 196994 // IInit
+      end
+
+      simplerelation 298626
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+    end
+  end
+
+  deploymentview 160770 "initModule"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 168834 "Init"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 283650 // Init
+      end
+    end
+  end
+end

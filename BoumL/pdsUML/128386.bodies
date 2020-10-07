@@ -1,0 +1,20 @@
+class Particle
+!!!394882.java!!!	Particle(in x : double, in y : double, in z : double)
+	  this.r = new R3Point(x,y,z);
+	  this.v = new R3Point(0.0,0.0,0.0);
+	  this.a = new R3Point(0.0,0.0,0.0);
+	  this.vicinity=new HashSet<Integer> ();
+	  this.numberNeighbors=0;
+
+
+!!!316930.java!!!	clone() : Object
+            Particle obj=null;
+            try{
+                obj=(Particle) super.clone();
+                obj.a = (R3Point) obj.a.clone();
+                obj.v = (R3Point) obj.v.clone();
+                obj.r = (R3Point) obj.r.clone();
+            }catch(CloneNotSupportedException ex){
+                System.out.println(" It was not possible to clone...");
+            }
+            return obj;

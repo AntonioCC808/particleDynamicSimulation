@@ -1,0 +1,56 @@
+format 222
+
+classcanvas 128002 class_ref 238082 // PDS
+  classdiagramsettings show_members_full_definition yes show_members_visibility yes member_max_width 0 end
+  xyz 260 422 2000
+end
+packagecanvas 128770 
+  package_ref 128002 // GlobalView
+    xyzwh 59 210 2000 145 161
+end
+packagecanvas 129026 
+  package_ref 128642 // Init
+    xyzwh 64 348 2000 65 161
+end
+packagecanvas 129154 
+  package_ref 128770 // Force
+    xyzwh 72 811 2000 79 161
+end
+packagecanvas 129282 
+  package_ref 128898 // Velocity
+    xyzwh 735 457 2000 103 161
+end
+packagecanvas 129410 
+  package_ref 207234 // Output
+    xyzwh 51 557 2000 91 161
+end
+packagecanvas 129538 
+  package_ref 129154 // Neighbours
+    xyzwh 1263 196 2005 147 161
+end
+packagecanvas 130306 
+  package_ref 213762 // java.util
+    xyzwh 1023 38 2000 101 161
+end
+simplerelationcanvas 128898 simplerelation_ref 134658
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 196 342 3000 to ref 128770
+end
+simplerelationcanvas 129666 simplerelation_ref 250754
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 158 411 3000 to ref 129026
+end
+simplerelationcanvas 129794 simplerelation_ref 250882
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 151 560 3000 to ref 129410
+end
+simplerelationcanvas 129922 simplerelation_ref 251010
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 284 665 3000 to ref 129154
+end
+simplerelationcanvas 130050 simplerelation_ref 251138
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 622 484 3000 to ref 129282
+end
+simplerelationcanvas 130178 simplerelation_ref 251266
+  from ref 128002 z 2006 stereotype "<<import>>" xyz 907 342.5 3000 to ref 129538
+end
+simplerelationcanvas 130434 simplerelation_ref 257794
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 749.5 242.5 3000 to ref 130306
+end
+end

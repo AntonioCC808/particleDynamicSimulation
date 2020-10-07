@@ -1,0 +1,16 @@
+ #This is the file with the necessary data to run the Molecular Dynamics simulation.
+
+ ReducedTimeStep 0.005 		             #Reduced time step
+ NumberSteps     500 		             #Number of steps in the Molecular Dynamic simulations
+ NickName 	 Ar 		             #Name of the element
+ Sigma 		 0.341E-9 	             #Parameter sigma   of the Lennard-Jones potential
+ Epsilon 	 119.8 		             #Parameter epsilon of the Lennard-Jones potential
+ ReducedDensity  0.8442 	             #Reduced density (adimensional)
+ Mass            1.0                         #Mass of the element
+ AtomicNumber    18 		             #Atomic number of the element
+ Temperature     0.722 		             #Reduced temperature (adimensional)
+ NumberCells     3		             #Number of FCC unit cells in each direction in the supercell
+ CutOffRadius    2.5 		             #Cutoff distance for truncation of intermolecular potential (in units of sigma)
+ CutOffList      2.7 		             #Cutoff distance for the computation of Verlet neighbour list (in units of sigma)
+ TypeOfLattice   FCC            	     #Type of the laticce (Faced Centered Cubic or Based Centered Cubic)
+ TypeOfPotential LENNARDJONES-TOTALSHIFTED    #Type of the potential (Lennard-Jones, Buckinghman or Hardwell)

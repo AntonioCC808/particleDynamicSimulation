@@ -1,0 +1,59 @@
+format 222
+
+classcanvas 128258 class_ref 386946 // Output
+  classdiagramsettings member_max_width 0 end
+  xyz 773 301.9 2000
+end
+classcanvas 132738 class_ref 176130 // ResultsFiles
+  classdiagramsettings member_max_width 0 end
+  xyz 1693 905 2000
+end
+classcanvas 133378 class_ref 135298 // Graph
+  classdiagramsettings member_max_width 0 end
+  xyz 762 1022 2000
+end
+classcanvas 133890 class_ref 224642 // IOutput
+  classdiagramsettings member_max_width 0 end
+  xyz 689 18 2000
+end
+packagecanvas 134146 
+  package_ref 128002 // GlobalView
+    xyzwh 18 268 2000 145 161
+end
+packagecanvas 134402 
+  package_ref 213762 // java.util
+    xyzwh 122 736 2016 101 161
+end
+packagecanvas 134914 
+  package_ref 256514 // java.io
+    xyzwh 29 432 2000 87 161
+end
+simplerelationcanvas 128024 simplerelation_ref 128024
+  from ref 128258 z 2017 stereotype "<<import>>" xyz 515.5 602 3000 to ref 134402
+end
+relationcanvas 132994 relation_ref 344066 // <dependency>
+  decenter_begin 785
+  decenter_end 128
+  from ref 128258 z 2001 to ref 132738
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133762 relation_ref 344194 // <dependency>
+  decenter_begin 535
+  decenter_end 513
+  from ref 128258 z 2001 to ref 133378
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134018 relation_ref 350722 // <realization>
+  from ref 128258 z 2001 to ref 133890
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+simplerelationcanvas 134274 simplerelation_ref 244098
+  from ref 128258 z 2001 stereotype "<<import>>" xyz 395 326 3000 to ref 134146
+end
+simplerelationcanvas 135042 simplerelation_ref 271362
+  from ref 128258 z 2001 stereotype "<<import>>" xyz 398 444 3000 to ref 134914
+end
+end

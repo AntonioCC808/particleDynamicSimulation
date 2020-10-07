@@ -1,0 +1,23 @@
+format 222
+
+classcanvas 128002 class_ref 296706 // Velocity
+  classdiagramsettings member_max_width 0 end
+  xyz 322 148 2000
+end
+packagecanvas 128130 
+  package_ref 128002 // GlobalView
+    xyzwh 415 364 2006 73 81
+end
+classcanvas 128386 class_ref 128514 // IVelocity
+  classdiagramsettings member_max_width 0 end
+  xyz 392 26 2000
+end
+simplerelationcanvas 128258 simplerelation_ref 160770
+  from ref 128002 z 2007 stereotype "<<import>>" xyz 433 312.5 2007 to ref 128130
+end
+relationcanvas 128514 relation_ref 253954 // <realization>
+  from ref 128002 z 2001 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

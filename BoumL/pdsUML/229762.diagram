@@ -1,0 +1,30 @@
+format 222
+
+classcanvas 128002 class_ref 283650 // Init
+  classdiagramsettings member_max_width 0 end
+  xyz 306.9 186.8 2000
+end
+packagecanvas 128130 
+  package_ref 128002 // GlobalView
+    xyzwh 332 426 2006 75 81
+end
+classcanvas 128386 class_ref 196994 // IInit
+  classdiagramsettings member_max_width 0 end
+  xyz 307.2 22 2000
+end
+packagecanvas 129666 
+  package_ref 213762 // java.util
+    xyzwh 473 422 2000 65 81
+end
+simplerelationcanvas 128258 simplerelation_ref 147714
+  from ref 128002 z 2007 stereotype "<<import>>" xyz 363 363 2007 to ref 128130
+end
+relationcanvas 128514 relation_ref 240642 // <realization>
+  from ref 128002 z 2001 to ref 128386
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+simplerelationcanvas 130050 simplerelation_ref 298626
+  from ref 128002 z 2001 stereotype "<<import>>" xyz 436 362 3000 to ref 129666
+end
+end

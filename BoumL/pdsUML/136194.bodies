@@ -1,0 +1,104 @@
+class InputData
+!!!134914.java!!!	InputData(in simulationData : string)
+	// Variables which will be compared in the switch with the data read from the
+		// input file
+		final String ReducedTimeStep = "ReducedTimeStep";
+		final String NumberSteps = "NumberSteps";
+		final String NickName = "NickName";
+		final String Sigma = "Sigma";
+		final String Epsilon = "Epsilon";
+		final String ReducedDensity = "ReducedDensity";
+		final String AtomicNumber = "AtomicNumber";
+		final String Temperature = "Temperature";
+		final String NumberCells = "NumberCells";
+		final String CutOffRadius = "CutOffRadius";
+		final String CutOffList = "CutOffList";
+		final String TypeOfPotential = "TypeOfPotential";
+		final String TypeOfLattice = "TypeOfLattice";
+		final String Mass = "Mass";
+		final String HistogramResolution = "HistogramResolution";
+		String s;
+		// creates the experiment with the data in the text file
+		// Use "." as decimal separator
+		Locale.setDefault(Locale.ENGLISH);
+		Scanner in = null;
+		try {
+			// Open the file
+			in = new Scanner(new FileReader(simulationData));
+			in.hasNext();
+			while (in.hasNext()) {
+				s = in.next();
+				switch (s) {
+
+				case ReducedTimeStep:
+					timeStep = in.nextDouble();
+					break;
+				case NumberSteps:
+					nSteps = in.nextInt();
+					break;
+				case NickName:
+					nickname = in.next();
+					break;
+				case Sigma:
+					sigma = in.nextDouble();
+					break;
+				case Epsilon:
+					epsilon = in.nextDouble();
+					break;
+				case ReducedDensity:
+					reduceDensity = in.nextDouble();
+					break;
+				case AtomicNumber:
+					atomicNumber = in.nextInt();
+					break;
+				case Mass:
+					mass = in.nextDouble();
+					break;
+				case Temperature:
+					temperature = in.nextDouble();
+					break;
+				case NumberCells:
+					numberCells = in.nextInt();
+					break;
+				case CutOffRadius:
+					cutoffRadius = in.nextDouble();
+					break;
+				case CutOffList:
+					cutoffList = in.nextDouble();
+					break;
+				case HistogramResolution:
+					histogramResolution = in.nextInt();
+					break;
+				case TypeOfPotential:
+					String typep=in.next();
+					if (typep.equals("LENNARDJONES-TOTALSHIFTED")) {
+						potential = IForce.TypeOfPotential.LENNARDJONESTOTALSHIFTED;
+					}else if(typep.equals("LENNARDJONES-SHIFTED")){
+						potential = IForce.TypeOfPotential.LENNARDJONESSHIFTED;
+					}else if(typep.equals("LENNARDJONES-UNSHIFTED")) {
+						potential = IForce.TypeOfPotential.LENNARDJONESUNSHIFTED;
+					}
+					break;
+				case TypeOfLattice:
+					String typel=in.next();
+					if (typel.equals("FCC")) {
+						initialLattice = IInit.TypeOfCellLattice.FCC;
+					}else if(typel.equals("BCC")){
+						initialLattice = IInit.TypeOfCellLattice.BCC;
+					}
+					break;
+				default:
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error opening file: " + simulationData);
+		} finally {
+			if (in != null) {
+				// close the file
+				in.close();
+			}
+		}
+		outputFolder = "Output\\";
+		histogramResolution = 100;
+		latcon = sigma * Math.pow(4 / reduceDensity, 1 / 3.0);

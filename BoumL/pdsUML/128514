@@ -1,0 +1,305 @@
+format 222
+"Pds" // Pds
+  revision 22
+  modified_by 26 "ANTONIO CUADCOB"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "pds/pdsModule/"
+  java_package "pds.pdsModule"
+  classview 186754 "ClassView"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 134530 // pmsModule
+    classdiagram 193794 "pdsClassDiagram"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size E
+    end
+
+    class 238082 "PDS"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 331778 "step"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "This is the current step of the simulation"
+      end
+
+      attribute 332290 "simulationThread"
+	private explicit_type "Thread"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "This is the handler for the concurrent thread in which the
+simulation will run if requested."
+      end
+
+      operation 454402 "PDS"
+	public explicit_return_type ""
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${synchronized}${name}${(}${)}${throws} {
+  ${body}}
+"
+	
+	
+	
+	comment "Default constructor
+"
+      end
+
+      simplerelation 134658
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128002 // GlobalView
+      end
+
+      simplerelation 250754
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128642 // Init
+      end
+
+      simplerelation 250882
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 207234 // Output
+      end
+
+      simplerelation 251010
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128770 // Force
+      end
+
+      simplerelation 251138
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 128898 // Velocity
+      end
+
+      simplerelation 251266
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 129154 // Neighbours
+      end
+
+      simplerelation 257794
+	-_->
+	  stereotype "import"
+	  on 
+	  package_ref 213762 // java.util
+      end
+
+      operation 467714 "simulation"
+	force_body_gen private return_type class_ref 176130 // ResultsFiles
+	nparams 1
+	  param in name "experiment" type class_ref 136194 // InputData
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This operation runs a simulation of the given experiment up to completion and produces 
+the output results. If it is running in a concurrent thread it can be
+paused and continued.
+
+@param experiment is the experiment object with the data needed to configure and 
+run the simulation
+@return returns the ResultsFile object with the names of all the requested 
+resulting images and data files generated. If any of those files could not 
+be generated the corresponding string would be a null reference."
+      end
+
+      operation 128282 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "args" explicit_type "String []"
+	nexceptions 1
+	  exception class_ref 407042 // ExperimentNotCreated
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    activity 128002 "SimulationActivity"
+      activitydiagram 290818 "Diagram"
+	activitydiagramsettings
+	 end
+	size A4
+      end
+
+      activitynode 128002 initial_node ""
+	flow 128002 "<flow>"
+	  on activityaction_ref 128002 // activity action Calculate_nSteps&MovieSteps
+	end
+      end
+
+      activityaction 128002 "Calculate_nSteps&MovieSteps"
+	opaque_action
+	java_behavior "nSteps = (int) (Math.floor(e.totalTime/e.deltaTime))+1;
+
+nStepsToStore = 0;  //TODO
+
+startingStep = 0;   //TODO
+
+//TODO"
+	comment "Initialize local variables for the management of the simulation steps"
+	flow 128130 "<flow>"
+	  on activityaction_ref 128386 // activity action CreateInit
+	end
+      end
+
+      activityaction 128386 "CreateInit"
+	opaque_action
+	flow 128258 "<flow>"
+	  on activityaction_ref 128642 // activity action Init.doInit()
+	end
+      end
+
+      activityaction 128514 "CreateForce"
+	opaque_action
+	flow 128642 "<flow>"
+	  on activityaction_ref 128770 // activity action CreateVelocity
+	end
+      end
+
+      activityaction 128642 "Init.doInit()"
+	opaque_action
+	flow 128386 "<flow>"
+	  on activityaction_ref 128898 // activity action CreateNeighbours
+	end
+      end
+
+      activityaction 128770 "CreateVelocity"
+	opaque_action
+	flow 128770 "<flow>"
+	  on activityaction_ref 129154 // activity action simulate
+	end
+      end
+
+      activityaction 128898 "CreateNeighbours"
+	opaque_action
+	flow 128514 "<flow>"
+	  on activityaction_ref 128514 // activity action CreateForce
+	end
+      end
+
+      activityaction 129026 "CreateOutput"
+	opaque_action
+	flow 129026 "<flow>"
+	  on activityaction_ref 129282 // activity action GetResults
+	end
+      end
+
+      activityaction 129154 "simulate"
+	opaque_action
+	flow 128898 "<flow>"
+	  on activityaction_ref 129026 // activity action CreateOutput
+	end
+      end
+
+      activitynode 128386 activity_final ""
+      end
+
+      activityaction 129282 "GetResults"
+	opaque_action
+	flow 129154 "<flow>"
+	  on activitynode_ref 128386 // activity_final
+	end
+      end
+    end
+  end
+
+  deploymentview 134530 "pmsModule"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 251266 "PDS"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 238082 // PDS
+      end
+    end
+  end
+end
